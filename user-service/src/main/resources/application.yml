@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      show-details: always
+      
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 10
+    password: 123456
+    username: tugayesilyurt
+    url: jdbc:postgresql://localhost:5432/userdb
+    
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+

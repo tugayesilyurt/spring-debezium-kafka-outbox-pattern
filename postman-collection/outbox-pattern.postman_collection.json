@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "31c28b48-55da-4580-84a4-0854f5791b51",
+		"name": "outbox-pattern",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "debezium-connectors",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"name\": \"user-outbox-connector\",\r\n   \"config\": {\r\n      \"connector.class\": \"io.debezium.connector.postgresql.PostgresConnector\",\r\n      \"tasks.max\": \"1\",\r\n      \"database.hostname\": \"postgres\",\r\n      \"database.port\": \"5432\",\r\n      \"database.user\": \"tugayesilyurt\",\r\n      \"database.password\": \"123456\",\r\n      \"database.dbname\": \"userdb\",\r\n      \"database.server.name\": \"pg-outbox-server\",\r\n      \"tombstones.on.delete\": \"false\",\r\n      \"table.whitelist\": \"public.outbox\",\r\n      \"transforms\": \"outbox\",\r\n      \"transforms.outbox.type\": \"com.transform.CustomTransformation\"\r\n   }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8083/connectors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"connectors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"tugayesilyurt\",\r\n    \"password\" : \"123456\",\r\n    \"email\" : \"htyesilyurt@gmail.com\"\r\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/v1/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
