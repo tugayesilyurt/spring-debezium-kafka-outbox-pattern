@@ -1,8 +1,7 @@
 ## Docker Compose Spring Boot,Debezium,Apache Kafka with outbox-pattern ##
 
-## System Design ##
-
 - **System Design**
+
 ![System Design](https://github.com/tugayesilyurt/spring-debezium-kafka-outbox-pattern/blob/main/assets/system-design.PNG)
 
 ## Follow the steps for building and installing
